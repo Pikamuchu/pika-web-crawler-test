@@ -2,11 +2,20 @@
 
 ## Introduction
 
-Web crawler test script for web testing with snapshop comparison.
+Web crawler test script for web testing with snapshot comparison.
 
 ## Installing / Getting started 
 
-TODO
+To install the package execute:
+```
+npm install -g pika-web-crawler-test
+```
+
+After installation, tou will have access to the 'pika-web-crawler-test' binary in your command line.
+You can check help with this command:
+```
+pika-web-crawler-test --help
+```
 
 ## Developing 
  
@@ -66,4 +75,3 @@ where [command] is one of:
 ## Windows Environment
 * If the project is ran in a Windows environment use the script files to start and stop chrome.
 * Chrome should be installed in **c:\Program Files (x86)\Google\Chrome\Application**, if it is not the case update the path in **processes/start-chrome-headless.bat**.
-
