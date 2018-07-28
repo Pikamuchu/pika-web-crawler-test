@@ -12,8 +12,7 @@ export default class ChromeService {
    */
   async start() {
     this.chrome = await this.launch();
-    console.log(`* Chrome started. Debugging port is ${this.chrome.port}`);
-    console.log(this.chrome);
+    console.log(`Chrome started. Pid is ${this.chrome.pid}. Debugging port is ${this.chrome.port}`);
   }
 
   /**
@@ -22,7 +21,7 @@ export default class ChromeService {
   async stop() {
     try {
       const result = await this.kill();
-      console.log(`* Chrome stopped.`);
+      console.log(`Chrome stopped.`);
     } catch (error) {
       console.log(`Cannot stop chrome. Error: ${error}`);
     }

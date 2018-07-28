@@ -7,11 +7,14 @@ PARAMS="$@"
 if [ "$COMMAND" = "run" ]; then
   ./bin/run $PARAMS
 
+elif [ "$COMMAND" = "test" ]; then
+  npm run test
+
 elif [ "$COMMAND" = "format" ]; then
   npm run prettier
 
 elif [ "$COMMAND" = "publish" ]; then
-  npm login && npm publish
+  (npm whoami || npm login) && npm publish
 
 else
   echo ""
@@ -19,6 +22,7 @@ else
   echo ""
   echo "where [command] is one of:"
   echo "   run -> execute application. Use --help argument to see command help."
+  echo "   test -> execute application tests."
   echo "   format -> auto format project code using prettier."
   echo "   publish -> do login and publish package."
 

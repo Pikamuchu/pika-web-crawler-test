@@ -7,15 +7,14 @@ class CrawlerTest extends Command {
   static description = 'Pika web crawler test script';
 
   static flags = {
-    // add --version flag to show CLI version
     version: flags.version({ char: 'v' }),
     help: flags.help({ char: 'h' }),
-    pathSnapshots: flags.string({ char: 'p', description: 'Base path for snapshots' })
+    pathSnapshots: flags.string({ char: 'p', description: 'Base path for snapshots' }),
+    chunk: flags.string({ char: 'c', description: 'Number of concurrent url calls', default: '2' })
   };
 
   static args = [
-    { name: 'initialUrl', required: true, description: 'Initial Url to open and parse links' },
-    { name: 'chunk', required: false, description: 'Number of concurrent url calls', hidden: false, default: '2' }
+    { name: 'url', required: true, description: 'Url to open and parse links' }
   ];
 
   async run() {
@@ -28,11 +27,11 @@ class CrawlerTest extends Command {
     try {
       const { args, flags } = this.parse(CrawlerTest);
 
-      if (!args.initialUrl) {
-        throw 'Parameter "initialUrl" is required!';
+      if (!args.url) {
+        throw 'Parameter "url" is required!';
       }
 
-      console.log('* Initial Url: ' + args.initialUrl);
+      console.log('* Initial Url: ' + args.url);
       console.log('* Chunks: ' + args.chunk);
       console.log('*');
 
@@ -45,8 +44,8 @@ class CrawlerTest extends Command {
       crawlerService = new CrawlerService(flags.pathSnapshots);
 
       // Read test data
-      console.log('* Opening url ' + args.initialUrl + ' and parsing links');
-      await crawlerService.crawlUrl(args.initialUrl, parseInt(args.chunk));
+      console.log('* Opening url ' + args.url + ' and parsing links');
+      await crawlerService.crawlUrl(args.url, flags.chunk ? parseInt(flags.chunk) : 2);
     } catch (error) {
       console.error('An error ocurred:');
       console.error(error);
