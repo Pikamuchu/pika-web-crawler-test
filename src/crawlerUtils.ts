@@ -1,5 +1,5 @@
 import * as cheerio from 'cheerio';
-import fs = require('fs');
+import * as fs from 'fs';
 
 export default class CrawlerUtils {
   static async openAndParseUrlLinks(url: string) {
@@ -75,7 +75,7 @@ export default class CrawlerUtils {
    */
   static parseUrl(url: string): any {
     const regex = /((http|https)?:\/\/)?([-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6})\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/gm;
-    const requestUrl = url.startsWith('http') ? url : 'http://' + url;
+    const requestUrl = url.startsWith('http') ? url : 'https://' + url;
     let m,
       result: any = {};
     while ((m = regex.exec(requestUrl)) !== null) {

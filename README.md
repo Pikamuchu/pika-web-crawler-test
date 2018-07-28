@@ -22,6 +22,7 @@ pika-web-crawler-test --help
 ### Built With
 * [Oclif](https://github.com/oclif/oclif)
 * [Headless Chrome Automation tool](https://github.com/graphcool/chromeless)
+* [Chrome Launcher](https://github.com/GoogleChrome/chrome-launcher)
 * [Cheerio](https://github.com/cheeriojs/cheerio)
 
 ### Prerequisites
@@ -31,10 +32,9 @@ The following software must be installed
 * [Git](https://git-scm.com/downloads) - optional
 
 ### Folder structure
-* root: Contains the README.md, the main configuration to execute the project such as package.json or any other configuration file.
-* bin: Contains the oclif script run.
-* scripts: Contains the scripts to start/stop Chrome in headless mode or any other system script required to run the tests.
-* src: Contains the source code for crawler test script.
+* root: Contains the README.md, the main configuration to execute the project such as package.json or any other configuration files.
+* bin: Contains the application run script.
+* src: Contains the source code for application script.
 * node_modules: Contains third party JS libraries used in this project
 
 ### Setting up Dev
@@ -50,12 +50,9 @@ Install dependencies
 npm install
 ```
 
-Run web crawler test.
-Parameters:
-- initial-url: Initial Url to open and parse links.
-- chunks: Number of concurrent url calls.
+Run application help for usage.
 ```
-bin/run [initial-url] [chunks]
+bin/run --help
 ```
 
 ### Pika commands
@@ -66,12 +63,8 @@ All previous command can be executed using pika script
 Usage: pika [command]
 
 where [command] is one of:
-   run [initial-url] [chunks] - run the crawler test - also starts and stops chrome
-     - initial-url: Initial Url to open and parse links.
-     - chunks: Number of concurrent url calls. Default 2
-   format - auto format project code using prettier
+   run -> execute application. Use --help argument to see command help.
+   format -> auto format project code using prettier.
+   publish -> do login and publish package.
 ```
 
-## Windows Environment
-* If the project is ran in a Windows environment use the script files to start and stop chrome.
-* Chrome should be installed in **c:\Program Files (x86)\Google\Chrome\Application**, if it is not the case update the path in **processes/start-chrome-headless.bat**.

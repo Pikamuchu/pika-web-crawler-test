@@ -1,0 +1,26 @@
+#!/bin/bash
+
+COMMAND="$1"
+shift
+PARAMS="$@"
+
+if [ "$COMMAND" = "run" ]; then
+  ./bin/run $PARAMS
+
+elif [ "$COMMAND" = "format" ]; then
+  npm run prettier
+
+elif [ "$COMMAND" = "publish" ]; then
+  npm login && npm publish
+
+else
+  echo ""
+  echo "Usage: pika [command]"
+  echo ""
+  echo "where [command] is one of:"
+  echo "   run -> execute application. Use --help argument to see command help."
+  echo "   format -> auto format project code using prettier."
+  echo "   publish -> do login and publish package."
+
+  exit 1
+fi

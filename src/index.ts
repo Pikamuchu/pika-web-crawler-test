@@ -1,5 +1,6 @@
 import { Command, flags } from '@oclif/command';
 import CrawlerService from './crawlerService';
+import ChromeService from './chromeService';
 import CrawlerUtils from './crawlerUtils';
 
 class CrawlerTest extends Command {
@@ -21,6 +22,7 @@ class CrawlerTest extends Command {
     console.log('*********** Starting web crawler test **************');
     console.log('*');
 
+    let chromeService;
     let crawlerService;
 
     try {
@@ -34,12 +36,16 @@ class CrawlerTest extends Command {
       console.log('* Chunks: ' + args.chunk);
       console.log('*');
 
+      // Starting Chrome
+      chromeService = new ChromeService();
+      console.log('* Starting chrome');
+      await chromeService.start();
+
       // Opening crawler session
       crawlerService = new CrawlerService(flags.pathSnapshots);
 
       // Read test data
       console.log('* Opening url ' + args.initialUrl + ' and parsing links');
-
       await crawlerService.crawlUrl(args.initialUrl, parseInt(args.chunk));
     } catch (error) {
       console.error('An error ocurred:');
@@ -49,6 +55,10 @@ class CrawlerTest extends Command {
       // Closing crawler session
       if (crawlerService) {
         await crawlerService.endService();
+      }
+      // Closing chrome session
+      if (chromeService) {
+        await chromeService.stop();
       }
     }
 
