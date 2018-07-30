@@ -2,19 +2,23 @@ import * as cheerio from 'cheerio';
 import * as fs from 'fs';
 
 export default class CrawlerUtils {
-  static async openAndParseUrlLinks(url: string) {
-    let links = new Array();
+  /**
+   * Returns all links from url.
+   *
+   * @param url
+   */
+  static async openAndParseUrlLinks(url: string): Promise<string[]> {
+    let links: string[] = new Array<string>();
     try {
       // Open initial Url
-      const response: any = await this.getUrlContent(url);
+      const response = await this.getUrlContent(url);
       if (response.content) {
         // Parse opened url links
         const $ = cheerio.load(response.content);
-        $('a').each(function(i: any, link: any) {
+        $('a').each(function(i, link) {
           const linkHref = $(link).attr('href');
           if (linkHref) {
             const link = linkHref.startsWith('/') ? response.protocol + response.domain + linkHref : linkHref;
-            console.log('Found link ' + link);
             links.push(link);
           }
         });

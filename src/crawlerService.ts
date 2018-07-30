@@ -2,12 +2,22 @@ import { Chromeless } from 'chromeless';
 import CrawlerUtils from './crawlerUtils';
 
 export default class CrawlerService {
-  private masterChromeless: Chromeless<{}>;
+  private chromeless: Chromeless<{}>;
   private snapshotPath: string;
+  private useragent: string;
+  private filterLinksRegex: RegExp;
 
-  constructor(snapshotPath: string = './snapshots') {
-    this.masterChromeless = new Chromeless();
+  constructor(
+    snapshotPath: string = './snapshots',
+    useragent: string,
+    remote: boolean = false,
+    filterLinksRegex: string
+  ) {
+    const options = { launchChrome: false, remote: remote };
+    this.chromeless = new Chromeless(options);
     this.snapshotPath = snapshotPath;
+    this.useragent = useragent;
+    this.filterLinksRegex = filterLinksRegex ? new RegExp(filterLinksRegex) : null;
   }
 
   /**
@@ -20,11 +30,16 @@ export default class CrawlerService {
     // Do some sleep in order to assure chrome startup
     await CrawlerUtils.sleep();
     // Parsing url
-    const testLinksArray = await CrawlerUtils.openAndParseUrlLinks(url);
-    if (testLinksArray) {
+    console.log('* Opening url ' + url + ' and parsing links');
+    const linksArray = await CrawlerUtils.openAndParseUrlLinks(url);
+    if (linksArray) {
+      // filter links
+      const testLinksArray = linksArray.filter(
+        url => url && url.length > 0 && (!this.filterLinksRegex || this.filterLinksRegex.test(url))
+      );
       // Process links in chunks
       let i, j;
-      console.log('* Total test urls ' + testLinksArray.length);
+      console.log('* Crawling ' + testLinksArray.length + ' test Urls from ' + linksArray.length + ' links found.');
       for (i = 0, j = testLinksArray.length; i < j; i += chunk) {
         // Preparing chunk
         const start = i;
@@ -41,13 +56,13 @@ export default class CrawlerService {
    * Ends crwaler session.
    */
   async endService() {
-    await this.masterChromeless.end();
+    await this.chromeless.end();
   }
 
   protected async multiTaskOpenUrl(testUrls: string[]) {
     try {
       // Creating tasks promises
-      let openUrlsPromises = testUrls.filter(url => url && url.length > 0).map(url => this.openUrl(url));
+      let openUrlsPromises = testUrls.map(url => this.openUrl(url));
       // Executing tasks
       if (openUrlsPromises && openUrlsPromises.length) {
         const screenshots = await Promise.all(openUrlsPromises);
@@ -62,14 +77,13 @@ export default class CrawlerService {
   protected openUrl(url: string): Promise<string> {
     // Opening url on headless chrome
     return new Promise((resolve, reject) => {
-      const chromeless = new Chromeless({ launchChrome: false });
-      chromeless
+      this.chromeless
         .goto(url)
+        .setUserAgent(this.useragent)
         .screenshot(undefined, {
           filePath: CrawlerUtils.toSnapshotFilePath(url, this.snapshotPath)
         })
         .then(async (screenshot: any) => {
-          await chromeless.end();
           resolve(screenshot);
         })
         .catch((err: any) => reject(err));

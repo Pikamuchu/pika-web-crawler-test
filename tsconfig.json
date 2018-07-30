@@ -2,6 +2,7 @@
   "compilerOptions": {
     "declaration": true,
     "forceConsistentCasingInFileNames": true,
+    "strictNullChecks": false,
     "importHelpers": true,
     "module": "commonjs",
     "outDir": "./lib",
