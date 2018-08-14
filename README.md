@@ -2,6 +2,7 @@
 
 [![Version](https://img.shields.io/npm/v/pika-web-crawler-test.svg)](https://npmjs.org/package/pika-web-crawler-test)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/7a5d465f487e4f55a8e50e8201cc69b1)](https://www.codacy.com/project/antonio.marin.jimenez/pika-web-crawler-test/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=pikamachu/pika-web-crawler-test&amp;utm_campaign=Badge_Grade_Dashboard)
+[![Build Status](https://img.shields.io/travis/pikamachu/pika-web-crawler-test/master.svg)](https://travis-ci.org/pikamachu/pika-web-crawler-test)
 
 ## Introduction
 
