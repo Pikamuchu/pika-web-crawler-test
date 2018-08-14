@@ -1,0 +1,24 @@
+language: node_js
+matrix:
+  include:
+    - node_js: "8"
+dist: trusty
+sudo: required
+cache:
+  directories:
+    - node_modules
+install:
+  - npm install
+before_script:
+  - export DISPLAY=:99.0
+  - export CHROME_PATH="$(pwd)/chrome-linux/chrome"
+  - sh -e /etc/init.d/xvfb start
+  - sleep 3 # wait for xvfb to boot
+script:
+  - npm test
+after_success:
+# - npm run coverage
+# - (send to coveralls)
+# - (send to codecov)
+addons:
+  chrome: stable
