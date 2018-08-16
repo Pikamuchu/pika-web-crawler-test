@@ -57,7 +57,12 @@ npm install
 
 Run application help for usage.
 ```
-bin/run --help
+npm run run --help
+```
+
+Run application tests.
+```
+npm run test
 ```
 
 ### Pika commands
@@ -68,8 +73,9 @@ All previous command can be executed using pika script
 Usage: pika [command]
 
 where [command] is one of:
-   run -> execute application. Use --help argument to see command help.
-   format -> auto format project code using prettier.
-   publish -> do login and publish package.
+   run - execute application. Use --help argument to see command help.
+   test - execute application tests.
+   format - auto format project code using prettier.
+   publish - do login and publish package.
 ```
 

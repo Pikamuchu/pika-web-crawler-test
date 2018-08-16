@@ -23,7 +23,7 @@ if "%COMMAND%" == "run" (
   echo    run - execute application. Use --help argument to see command help.
   echo    test - execute application tests.
   echo    format - auto format project code using prettier.
-  echo    publish -> do login and publish package.
+  echo    publish - do login and publish package.
 
   exit /b 1
 )

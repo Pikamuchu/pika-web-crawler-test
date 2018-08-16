@@ -13,10 +13,10 @@
   ],
   "scripts": {
     "run": "bin/run",
-    "posttest": "tsc -p test --noEmit",
-    "prepack": "rm -rf lib && tsc",
-    "prepare": "rm -rf lib && tsc",
+    "prepack": "(rm -rf lib || rmdir /Q /S lib) && tsc",
+    "prepare": "(rm -rf lib || rmdir /Q /S lib) && tsc",
     "test": "nyc mocha --forbid-only \"test/**/*.test.ts\"",
+    "posttest": "tsc -p test --noEmit",
     "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
     "prettier": "prettier --parser typescript --single-quote --print-width 120 --write \"./**/*.ts\""
   },
