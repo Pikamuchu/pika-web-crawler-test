@@ -64,3 +64,6 @@ run-*.bat
 # Snapshot files
 snapshots/**/*.png
 
+# Coverage report
+coverage.lcov
+
