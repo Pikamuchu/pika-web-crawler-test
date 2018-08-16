@@ -22,6 +22,10 @@ export default class CrawlerUtils {
             links.push(link);
           }
         });
+        // Add opened url if not already added
+        if (!links.includes(url)) {
+          links.unshift(url);
+        }
       }
     } catch (error) {
       console.error(error);

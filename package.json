@@ -17,6 +17,7 @@
     "prepack": "rm -rf lib && tsc",
     "prepare": "rm -rf lib && tsc",
     "test": "nyc mocha --forbid-only \"test/**/*.test.ts\"",
+    "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
     "prettier": "prettier --parser typescript --single-quote --print-width 120 --write \"./**/*.ts\""
   },
   "main": "lib/index.js",
@@ -33,7 +34,6 @@
     "@oclif/command": "^1",
     "@oclif/config": "^1",
     "@oclif/plugin-help": "^2",
-    "@types/cheerio": "^0.22.8",
     "cheerio": "^1.0.0-rc.2",
     "chrome-launcher": "^0.10.2",
     "chromeless": "^1.5.0",
@@ -44,6 +44,7 @@
     "@types/chai": "^4",
     "@types/mocha": "^5",
     "@types/node": "^10",
+    "@types/cheerio": "^0.22.8",
     "chai": "^4",
     "mocha": "^5",
     "nyc": "^12",

@@ -13,7 +13,7 @@ export default class CrawlerService {
     remote: boolean = false,
     filterLinksRegex: string
   ) {
-    const options = { launchChrome: false, remote: remote };
+    const options = { launchChrome: false, remote: remote, waitTimeout: 30000 };
     this.chromeless = new Chromeless(options);
     this.snapshotPath = snapshotPath;
     this.useragent = useragent;
@@ -39,14 +39,14 @@ export default class CrawlerService {
       );
       // Process links in chunks
       let i, j;
-      console.log('* Crawling ' + testLinksArray.length + ' test Urls from ' + linksArray.length + ' links found.');
+      console.log(`* Crawling ${testLinksArray.length} test Urls from ${linksArray.length} links found.`);
       for (i = 0, j = testLinksArray.length; i < j; i += chunk) {
         // Preparing chunk
         const start = i;
         const end = start + chunk < testLinksArray.length ? start + chunk : testLinksArray.length;
         const testUrlChunk = testLinksArray.slice(start, end);
         // Executing test data chunk
-        console.log('* Processing chunk ' + i / chunk + ' size ' + testUrlChunk.length + ' total processed ' + i);
+        console.log(`* Processing chunk ${i / chunk} size ${testUrlChunk.length} total processed  ${i}.`);
         await this.multiTaskOpenUrl(testUrlChunk);
       }
     }
@@ -76,6 +76,7 @@ export default class CrawlerService {
 
   protected openUrl(url: string): Promise<string> {
     // Opening url on headless chrome
+    console.log(`* Opening Url ${url}.`); 
     return new Promise((resolve, reject) => {
       this.chromeless
         .goto(url)
