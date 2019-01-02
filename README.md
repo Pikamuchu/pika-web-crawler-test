@@ -52,30 +52,25 @@ cd pika-web-crawler-test
 
 Install dependencies
 ```
-npm install
+bash pika install
 ```
 
 Run application help for usage.
 ```
-npm run run --help
+bash pika run --help
 ```
 
 Run application tests.
 ```
-npm run test
+bash pika test
 ```
 
-### Pika commands
+### Other project commands
 
-All previous command can be executed using pika script
+For other project command execute pika script help
 
 ```shell
-Usage: pika [command]
-
-where [command] is one of:
-   run - execute application. Use --help argument to see command help.
-   test - execute application tests.
-   format - auto format project code using prettier.
-   publish - do login and publish package.
+bash pika help
 ```
+
 

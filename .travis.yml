@@ -8,16 +8,16 @@ cache:
   directories:
     - node_modules
 install:
-  - npm install
+  - bash pika install
 before_script:
   - export DISPLAY=:99.0
   - export CHROME_PATH="$(pwd)/chrome-linux/chrome"
   - sh -e /etc/init.d/xvfb start
   - sleep 3 # wait for xvfb to boot
 script:
-  - npm test
+  - bash pika test
 after_success:
-  - npm run coverage
+  - bash pika coverage
 # - (send to coveralls)
 # - (send to codecov)
 addons:

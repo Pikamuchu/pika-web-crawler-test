@@ -13,8 +13,10 @@
   ],
   "scripts": {
     "run": "bin/run",
-    "prepack": "(rm -rf lib || rmdir /Q /S lib) && tsc",
-    "prepare": "(rm -rf lib || rmdir /Q /S lib) && tsc",
+    "prepack": "npm run compile",
+    "prepare": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
     "test": "nyc mocha --forbid-only \"test/**/*.test.ts\"",
     "posttest": "tsc -p test --noEmit",
     "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
