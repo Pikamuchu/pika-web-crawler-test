@@ -1,9 +1,9 @@
 {
-  "name": "pika-web-crawler-test",
-  "version": "0.3.1",
+  "name": "wcrawl",
+  "version": "1.0.0",
   "description": "Web crawler test script",
   "bin": {
-    "pkcrawl": "./bin/run"
+    "wcrawl": "./bin/run"
   },
   "keywords": [
     "pika",
@@ -60,7 +60,7 @@
     "/lib"
   ],
   "oclif": {
-    "bin": "pkcrawl"
+    "bin": "wcrawl"
   },
   "types": "lib/index.d.ts"
 }
