@@ -1,4 +1,4 @@
-# Pika web crawler test 
+# wcrawl 
 
 [![Version](https://img.shields.io/npm/v/wcrawl.svg)](https://npmjs.org/package/wcrawl)
 [![Build Status](https://img.shields.io/travis/pikamachu/pika-web-crawler-test/master.svg)](https://travis-ci.org/pikamachu/pika-web-crawler-test)
@@ -9,7 +9,7 @@
 
 ## Introduction
 
-Web crawler test script for web testing with snapshot comparison.
+Web crawler script for web testing with snapshot comparison.
 
 ## Installing / Getting started
 
@@ -18,7 +18,7 @@ To install the package execute:
 npm install -g wcrawl
 ```
 
-After installation, tou will have access to the 'pika-web-crawler-test' binary in your command line.
+After installation, tou will have access to the wcrawl binary in your command line.
 You can check help with this command:
 ```
 wcrawl --help
