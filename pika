@@ -8,7 +8,7 @@ if [ "$COMMAND" = "install" ]; then
   echo "* Installing node_modules..."
   npm install
 
-elif [ "$COMMAND" = "run" ]; then
+elif [ "$COMMAND" = "start" ]; then
   ./bin/run $PARAMS
 
 elif [ "$COMMAND" = "test" ]; then

@@ -2,7 +2,7 @@ import { expect, test } from '@oclif/test';
 
 import cmd = require('../src');
 
-describe('Test pika-web-crawler-test script', () => {
+describe('Test pkcrawl script', () => {
   test
     .stdout()
     .do(() => cmd.run(['-f=pikamachu.github', 'https://pikamachu.github.io']))

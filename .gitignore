@@ -58,9 +58,6 @@ typings/
 # dotenv environment variables file
 .env
 
-# custom scripts
-run-*.bat
-
 # Snapshot files
 snapshots/**/*.png
 

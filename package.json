@@ -1,9 +1,9 @@
 {
   "name": "pika-web-crawler-test",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Web crawler test script",
   "bin": {
-    "pika-web-crawler-test": "./bin/run"
+    "pkcrawl": "./bin/run"
   },
   "keywords": [
     "pika",
@@ -12,7 +12,7 @@
     "test"
   ],
   "scripts": {
-    "run": "bin/run",
+    "start": "bin/run",
     "prepack": "npm run compile",
     "prepare": "npm run compile",
     "compile": "tsc -p ./",
@@ -60,7 +60,7 @@
     "/lib"
   ],
   "oclif": {
-    "bin": "pika-web-crawler-test"
+    "bin": "pkcrawl"
   },
   "types": "lib/index.d.ts"
 }
