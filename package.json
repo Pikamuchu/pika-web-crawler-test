@@ -37,7 +37,7 @@
     "@oclif/config": "^1.6.33",
     "@oclif/plugin-help": "^2.0.5",
     "cheerio": "^1.0.0-rc.2",
-    "chrome-launcher": "^0.10.2",
+    "chrome-launcher": "^0.13.2",
     "chromeless": "^1.5.0",
     "tslib": "^1.9.3"
   },
